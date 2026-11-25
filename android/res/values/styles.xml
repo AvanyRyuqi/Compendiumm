@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Full screen, drawing under the camera cutout so the game gets the whole panel (2340x1080 on a Galaxy S23). -->
+    <style name="Fullscreen" parent="android:Theme.Material.NoActionBar.Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+
+    <!-- Ink-black edge-to-edge launch theme for P5R Launcher & Importer (eliminates Material grey cold-start flash). -->
+    <style name="P5LauncherTheme" parent="Fullscreen">
+        <item name="android:windowBackground">@color/p5_ink_black</item>
+        <item name="android:colorBackground">@color/p5_ink_black</item>
+        <item name="android:navigationBarColor">@color/p5_ink_black</item>
+        <item name="android:statusBarColor">@color/p5_ink_black</item>
+    </style>
+</resources>
