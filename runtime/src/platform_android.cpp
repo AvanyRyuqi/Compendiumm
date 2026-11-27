@@ -109,7 +109,7 @@ struct ThreadStart {
 };
 
 static void* thread_entry(void* p) {
-    if (const char* e = getenv("NX_MALLOC_TUNE"); !(e && e[0] == '0')) {
+    if (const char* e = getenv("NX_MALLOC_TUNE"); (e && e[0] == '1')) {
         mallopt(M_BIONIC_ZERO_INIT, 1);
     }
     ThreadStart s = *static_cast<ThreadStart*>(p);
@@ -1464,7 +1464,7 @@ extern "C" void android_main(android_app* app) {
     // The heap (scudo) zero-fills every allocation and gives freed pages back at once by default: in the replay, a
     // memset under each allocation and madvise churn (docs/nvn/android-perf/PLAN.md, phase 2). NX_MALLOC_TUNE=0: as
     // the system set it.
-    if (const char* e = getenv("NX_MALLOC_TUNE"); !(e && e[0] == '0')) {
+    if (const char* e = getenv("NX_MALLOC_TUNE"); (e && e[0] == '1')) {
         int zero = mallopt(M_BIONIC_ZERO_INIT, 1), decay = mallopt(M_DECAY_TIME, 1);
 #ifndef M_CACHE_COUNT_MAX
 #define M_CACHE_COUNT_MAX (-200)
